@@ -8,6 +8,7 @@ import { Life } from './components/Life';
 import { Footer } from './components/Footer';
 import { ProjectDrawer } from './components/ProjectDrawer';
 import { PenTool, Save, RotateCcw, Download } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   const { content, lang, isEditing, toggleEditing, resetContent } = useContent();
@@ -53,6 +54,7 @@ export default function App() {
 
   return (
     <div className={`min-h-screen bg-[#F8F9FA] text-[#1A1A1A] font-sans selection:bg-klein-light selection:text-white ${isEditing ? 'pb-24' : ''}`}>
+      <Analytics />
       <Navbar />
       
       <main>

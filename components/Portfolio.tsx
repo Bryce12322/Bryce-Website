@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Monitor, Smartphone } from 'lucide-react';
 import { useContent } from '../lib/store';
 import { Editable } from './Editable';
+import { trackEvent } from '../lib/analytics';
 
 interface PortfolioProps {
   onSelectProject: (id: string) => void;
@@ -10,6 +11,11 @@ interface PortfolioProps {
 export const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
   const { content, lang } = useContent();
   const data = content[lang].portfolio;
+
+  const handleProjectClick = (id: string, title: string) => {
+    trackEvent('project_click', { project_id: id, project_title: title });
+    onSelectProject(id);
+  };
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -26,7 +32,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
         {data.items.map((project, index) => (
           <div 
             key={project.id}
-            onClick={() => onSelectProject(project.id)}
+            onClick={() => handleProjectClick(project.id, project.title)}
             className="group cursor-pointer flex flex-col h-full bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-300 ease-out"
           >
             {/* Visual Area */}

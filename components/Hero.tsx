@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
       {/* CTA Button */}
       <div className="mt-16 animate-bounce">
         <button 
-          onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+          onClick={handleCtaClick}
           className="flex flex-col items-center gap-2 text-gray-400 hover:text-klein transition-colors group"
         >
           <span className="text-xs tracking-widest">
